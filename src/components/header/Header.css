@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 1.6rem 3.2rem;
+  width: 100%;
+  background-color: #f5ba13;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .3);
+}
+
+.header__title {
+  font-weight: 500;
+  color: #ffffff;
+}
