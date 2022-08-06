@@ -1,0 +1,44 @@
+.create-area {
+  position: relative;
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: 30rem;
+  height: max-content;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  border-radius: 7px;
+}
+
+.create-area__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.create-area__form input,
+.create-area__form textarea {
+  width: 100%;
+  padding: .4rem;
+  outline: none;
+  border: none;
+}
+
+.create-area__form input {
+  font-weight: bold;
+}
+
+.create-area__form textarea {
+  resize: none;
+}
+
+.create-area__form button {
+  position: absolute;
+  right: 1.8rem;
+  bottom: -1.8rem;
+  color: #ffffff;
+  background-color: #f5ba13;
+}
+
+.create-area__form button:hover {
+  background-color: #fcc121;
+}
