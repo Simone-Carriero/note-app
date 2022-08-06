@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-import CreateArea from './components/create-area/CreateArea';
-import Header from './components/header/Header';
-import NotesArea from './components/notes-area/NotesArea';
+import CreateArea from '../create-area/CreateArea';
+import Footer from '../footer/Footer';
+import Header from '../header/Header';
+import NotesArea from '../notes-area/NotesArea';
+
+import './App.css'
 
 
 function App() {
@@ -21,7 +24,7 @@ function App() {
 
   
   return (
-    <>
+    <div className='app-container'>
       <Header />
       <CreateArea
         addNote={addNote}
@@ -30,7 +33,8 @@ function App() {
         notes={notes}
         removeNote={removeNote}
       />
-    </>
+      <Footer />
+    </div>
   );
 }
 
