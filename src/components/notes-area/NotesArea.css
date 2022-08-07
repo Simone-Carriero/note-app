@@ -1,13 +1,21 @@
 .notes-area {
   margin-top: 5rem;
-  padding: 0 2rem;
+  max-width: 95%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minMax(150px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 @media only screen and (min-width: 600px) {
   .notes-area {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 90%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .notes-area {
     grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem 2rem;
   }
 }
