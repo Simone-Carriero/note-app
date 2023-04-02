@@ -1,88 +1,78 @@
-import React, { useState } from 'react'
-import { Fab } from '@mui/material'
-import { Zoom } from '@mui/material';
-import { nanoid } from 'nanoid'
+import React, { useRef, useState, useEffect } from 'react';
+import { Container, Box, Fab, Zoom, Paper } from '@mui/material';
 
 import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
 
-import './CreateArea.css'
+import './CreateArea.css';
+import Alert from '../Alert';
 
-const CreateArea = ({addNote}) => {
-
-  const initialState = {
-    title: '',
-    content: ''
-  }
-
-  const [note, setNote] = useState(initialState)
-  const [isExpanded, setIsExpanded] = useState(false)
-
-  const handleChange = ({ target }) => {
-    const { name, value } = target
-
-    setNote(prevState => {
-      return {
-        ...prevState,
-        [name]: value
-      }
-    })
-  }
-
-  const submitNote = (e) => {
-    e.preventDefault();
-
-    addNote({
-      id: nanoid(),
-      ...note
-    })
-
-    setNote(initialState)
-  }
+const CreateArea = ({
+  note,
+  handleChange,
+  isEditing,
+  handleNote,
+  alert,
+  showAlert,
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const inputRef = useRef();
 
   const expand = () => {
-    setIsExpanded(true)
-  }
+    setIsExpanded(true);
+  };
 
+  useEffect(() => {
+    if (isExpanded) {
+      inputRef.current.focus();
+    }
+  }, [isExpanded]);
 
   return (
-    <div className="create-area">
-      <form
-        className='create-area__form'>
-        
-        {
-          isExpanded && 
+    <Container maxWidth='sm'>
+      <Paper elevation={4}>
+        <Box className='create-area'>
+          {alert.show && (
+            <Alert
+              {...alert}
+              removeAlert={showAlert}
+            />
+          )}
+          {isExpanded || isEditing ? (
+            <input
+              type='text'
+              name='title'
+              value={note.title}
+              placeholder='Title'
+              onChange={handleChange}
+              ref={inputRef}
+            />
+          ) : null}
 
-          <input
-            type='text'
-            name='title'
-            value={note.title}
-            placeholder='Title'
+          <textarea
+            name='content'
+            value={note.content}
+            rows={isExpanded || isEditing ? 3 : 1}
+            placeholder='Take a note...'
             onChange={handleChange}
+            onClick={expand}
           />
-        }
 
-        <textarea
-          name='content'
-          value={note.content}
-          rows={isExpanded ? 3 : 1}
-          placeholder='Take a note...'
-          onChange={handleChange}
-          onClick={expand}
-        />
-        
-        <Zoom in={isExpanded} >
-          <Fab
-          onClick={submitNote}
-          size='small'
-          aria-label="add"
-        >
-          <AddIcon sx={{ fontSize: 30 }} />
-          </Fab>
-        </Zoom>
+          <Zoom in={isExpanded || isEditing}>
+            <Fab
+              onClick={handleNote}
+              aria-label='add'>
+              {isEditing ? (
+                <EditIcon sx={{ fontSize: 30 }} />
+              ) : (
+                <AddIcon sx={{ fontSize: 30 }} />
+              )}
+            </Fab>
+          </Zoom>
+        </Box>
+      </Paper>
+    </Container>
+  );
+};
 
-      </form>
-    </div>
-  )
-}
-
-export default CreateArea
+export default CreateArea;

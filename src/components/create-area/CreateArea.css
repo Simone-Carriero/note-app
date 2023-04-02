@@ -1,45 +1,37 @@
 .create-area {
   position: relative;
   margin: 0 auto;
-  margin-top: 2rem;
-  width: 30rem;
   height: max-content;
   background-color: #ffffff;
-  box-shadow: 0 1px 5px rgb(138, 137, 137);
+  height: max-content;
   border-radius: 7px;
-}
-
-.create-area__form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 1rem;
 }
 
-.create-area__form input,
-.create-area__form textarea {
+.create-area input,
+.create-area textarea {
   width: 100%;
-  padding: .4rem;
+  padding: 0.4rem;
   outline: none;
   border: none;
 }
 
-.create-area__form input {
+.create-area input {
   font-weight: bold;
 }
 
-.create-area__form textarea {
+.create-area textarea {
   resize: none;
 }
 
-.create-area__form button {
+.create-area button {
   position: absolute;
   right: 1.8rem;
-  bottom: -1.8rem;
+  bottom: -1.5rem;
   color: #ffffff;
   background-color: #f5ba13;
 }
 
-.create-area__form button:hover {
+.create-area button:hover {
   background-color: #fcc121;
 }
